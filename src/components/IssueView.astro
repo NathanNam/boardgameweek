@@ -4,7 +4,6 @@ import GameBox from './GameBox.astro';
 import VideoTV from './VideoTV.astro';
 import SoloCard from './SoloCard.astro';
 import TipIcon from './TipIcon.astro';
-import StoreStrip from './StoreStrip.astro';
 import Shelf from './Shelf.astro';
 import { STORE, ONLINE, NOT_SPONSORED } from '../lib/site';
 import type { Issue } from '../lib/issues';
@@ -25,7 +24,6 @@ const { Content } = await render(issue);
   </div>
 </section>
 
-<StoreStrip localNote={d.localNote} />
 
 <div class="row2">
 <section class="sec" aria-labelledby="why">
@@ -76,7 +74,8 @@ const { Content } = await render(issue);
         <p class="label">In San Francisco?</p>
         <h3>Dogpatch Games</h3>
         <p>Our neighborhood game store, at {STORE.address} Ask them, or check their games library.</p>
-        <p><a href="#local">Hours and directions</a> · <a href="/local-store/">More about the store</a></p>
+        {d.localNote && <p class="weekly">{d.localNote}</p>}
+        <p><a href={STORE.directions}>Directions <span aria-hidden="true">↗</span></a> · <a href="/local-store/">Hours and more about the store</a></p>
       </div>
     </div>
     {d.family.buyOnline && (

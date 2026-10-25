@@ -34,7 +34,6 @@ img,svg{max-width:100%}
 .mast .issue{display:flex;flex-wrap:wrap;gap:4px 12px;margin:6px 0 0;color:var(--cream)}
 .mast .issue span{display:inline-flex;align-items:center;gap:12px}
 .mast .issue span+span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--mustard)}
-.stripes{display:none;position:absolute;right:0;top:0}
 
 /* hero */
 .hero{padding:20px 0 0}
@@ -130,14 +129,7 @@ img,svg{max-width:100%}
 .ns{font-size:14px;color:var(--muted);font-style:italic;margin:0}
 
 /* featured local store strip */
-.strip{margin-top:40px;border:3px solid var(--ink);border-radius:12px;overflow:hidden;background:var(--paper);box-shadow:6px 6px 0 var(--ink);scroll-margin-top:12px}
-.strip .awning{height:36px}
-.strip .in{padding:28px 16px 18px;display:grid;gap:18px}
-.strip .label{color:var(--rust-dk)}
-.strip h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,7.4vw,42px);line-height:1.08;margin:4px 0 6px;color:var(--forest)}
-.strip .sub{margin:0 0 10px;font-size:18px}
-.strip p{margin:0 0 10px}
-.strip .weekly{background:var(--mustard-lt);border:2px dashed var(--ink);border-radius:8px;padding:8px 12px}
+.weekly{background:var(--mustard-lt);border:2px dashed var(--ink);border-radius:8px;padding:8px 12px}
 .sign{background:var(--forest);color:var(--cream);border:3px solid var(--ink);border-radius:10px;padding:14px 16px;position:relative}
 .sign .label,.card.local .sign .label{color:var(--mustard-lt);margin:0}
 .sign address{font-style:normal;font-family:var(--cond);font-weight:600;font-size:22px;letter-spacing:.03em;line-height:1.25;margin:4px 0 10px;color:var(--mustard)}
@@ -147,7 +139,6 @@ img,svg{max-width:100%}
 .sign-links{margin:12px 0 0;font-size:15px}
 .sign a{color:var(--mustard-lt)}
 .sign a:hover{color:var(--cream)}
-.strip .btns,.card ul.lp-btns{list-style:none;margin:14px 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:10px}
 
 /* find a copy */
 .copy{display:grid;gap:16px}

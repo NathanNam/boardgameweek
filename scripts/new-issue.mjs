@@ -133,7 +133,7 @@ dontHaveIt:
   text: "TODO: one sentence."
   # url: https://example.com/
 
-# localNote: "Optional line in the Dogpatch Games strip. Never claim the store stocks a game."
+# localNote: "Optional line in the Dogpatch Games box under Find a copy. Never claim the store stocks a game."
 ---
 
 TODO: "Why this week", two short paragraphs. Link the news in \`sources\` above.

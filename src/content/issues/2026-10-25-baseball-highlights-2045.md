@@ -14,7 +14,7 @@ family:
   time: "~45 min"
   ages: "9+"
   note: "9+ is the starter edition; some editions say 14+."
-  bgg: https://boardgamegeek.com/boardgamefamily/77171/game-baseball-highlights-2045
+  bgg: https://boardgamegeek.com/boardgame/151022/baseball-highlights-2045
   video:
     id: eLeYsInZj-c
     title: "How to Play: Baseball Highlights: 2045"
