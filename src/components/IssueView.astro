@@ -1,0 +1,126 @@
+---
+import { render } from 'astro:content';
+import GameBox from './GameBox.astro';
+import VideoTV from './VideoTV.astro';
+import SoloCard from './SoloCard.astro';
+import TipIcon from './TipIcon.astro';
+import Shelf from './Shelf.astro';
+import { STORE, ONLINE, NOT_SPONSORED } from '../lib/site';
+import type { Issue } from '../lib/issues';
+
+interface Props { issue: Issue; shelf: Issue[] }
+const { issue, shelf } = Astro.props;
+const d = issue.data;
+const { Content } = await render(issue);
+---
+<section class="hero" aria-labelledby="hl">
+  <div>
+    <p class="label kicker">This week: {d.theme}</p>
+    <h1 id="hl">{d.headline}</h1>
+    <p class="dek">{d.dek}</p>
+  </div>
+  <div>
+    <GameBox game={d.family} hasSolo={!!d.solo} />
+  </div>
+</section>
+
+
+<div class="row2">
+<section class="sec" aria-labelledby="why">
+  <div class="sec-h"><span class="num" aria-hidden="true">1</span><h2 id="why">Why this week</h2></div>
+  <div class="panel">
+    <Content />
+    <p class="src">Sources: {d.sources.map((s, n) => (<>{n > 0 && ' · '}<a href={s.url}>{s.title}</a> ({s.outlet})</>))}</p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="learn">
+  <div class="sec-h"><span class="num" aria-hidden="true">2</span><h2 id="learn">How to learn it</h2></div>
+  <div class="learn-one">
+    <VideoTV video={d.family.video} id="video-family" />
+  </div>
+</section>
+</div>
+
+<section class="sec" aria-labelledby="talk">
+  <div class="sec-h"><span class="num" aria-hidden="true">3</span><h2 id="talk">Talk about it</h2></div>
+  <div class="qcards">
+    <article class="qc young" aria-labelledby="talk-young">
+      <header><h3 id="talk-young">Younger players</h3><span class="label">{d.talk.youngerAges}</span></header>
+      <ol>{d.talk.younger.map((q) => <li>{q}</li>)}</ol>
+    </article>
+    <article class="qc teen" aria-labelledby="talk-teen">
+      <header><h3 id="talk-teen">Teens</h3></header>
+      <ol>{d.talk.teens.map((q) => <li>{q}</li>)}</ol>
+    </article>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="tips">
+  <div class="sec-h"><span class="num" aria-hidden="true">4</span><h2 id="tips">Make it work for everyone</h2></div>
+  <ul class="tokens">
+    {d.tips.map((t, n) => (
+      <li class="tk"><TipIcon icon={t.icon} i={n} /><div><h3>{t.title}</h3><p>{t.text}</p></div></li>
+    ))}
+  </ul>
+</section>
+
+<section class="sec" aria-labelledby="copy">
+  <div class="sec-h"><span class="num" aria-hidden="true">5</span><h2 id="copy">Find a copy</h2></div>
+  <div class="copy">
+    <div class="card local">
+      <div class="awning" aria-hidden="true"></div>
+      <div class="in">
+        <p class="label">In San Francisco?</p>
+        <h3>Dogpatch Games</h3>
+        <p>Our neighborhood game store, at {STORE.address} Ask them, or check their games library.</p>
+        {d.localNote && <p class="weekly">{d.localNote}</p>}
+        <p><a href={STORE.directions}>Directions <span aria-hidden="true">↗</span></a> · <a href="/local-store/">Hours and more about the store</a></p>
+      </div>
+    </div>
+    {d.family.buyOnline && (
+      <div class="card">
+        <p class="label">Shopping online?</p>
+        <h3>We use {ONLINE.name}</h3>
+        <p>
+          <a href={d.family.buyOnline.url}>{d.family.buyOnline.kind === 'product' ? 'Buy online at GameNerdz' : 'Search GameNerdz'}<span class="vh"> for {d.family.name}</span><span aria-hidden="true"> ↗</span></a>{d.family.buyOnline.edition && ` (${d.family.name}, ${d.family.buyOnline.edition})`}
+        </p>
+      </div>
+    )}
+    <div class="card">
+      <p class="label">Not in SF?</p>
+      <h3>Find it at your local game store.</h3>
+      <p>Ask them; many stores can order a game in for you.</p>
+    </div>
+  </div>
+  <p class="ns copy-ns">{NOT_SPONSORED}</p>
+</section>
+
+{d.solo && <SoloCard game={d.solo} />}
+
+<section class="sec" aria-labelledby="shelf-h">
+  <div class="sec-h"><span class="num green" aria-hidden="true">★</span><h2 id="shelf-h">The shelf</h2></div>
+  <Shelf issues={shelf} />
+  <p class="shelf-more"><a href="/archive/">See every issue on the shelf</a></p>
+</section>
+
+<script>
+  // Click-to-load YouTube: nothing from YouTube's player loads until someone presses play.
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element | null;
+    const a = target?.closest<HTMLAnchorElement>('a[data-yt]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    const f = document.createElement('iframe');
+    f.src = `https://www.youtube-nocookie.com/embed/${a.dataset.yt}?autoplay=1&rel=0`;
+    f.title = a.dataset.title ?? 'YouTube video';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    f.allowFullscreen = true;
+    f.referrerPolicy = 'strict-origin-when-cross-origin';
+    const screen = document.createElement('div');
+    screen.className = 'screen';
+    screen.append(f);
+    a.replaceWith(screen);
+    f.focus();
+  });
+</script>

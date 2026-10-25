@@ -1,0 +1,43 @@
+---
+import type { Issue } from '../lib/issues';
+import { boxArtSvg } from '../lib/boxart.mjs';
+
+type Game = Issue['data']['family'];
+interface Props { game: Game; hasSolo: boolean }
+const { game, hasSolo } = Astro.props;
+const art = boxArtSvg(game.art);
+const makers = [game.designer, game.publisher].filter(Boolean).join(' · ');
+const info = game.bgg
+  ? { href: game.bgg, text: 'BoardGameGeek' }
+  : { href: game.publisherUrl!, text: 'Publisher' };
+---
+<article class="box family" aria-labelledby="game-family">
+  <div class="front">
+    <span class="art" set:html={art} />
+    {game.seal && (
+      <span class="seal" aria-hidden="true"><span>{game.seal[0]}<b>{game.seal[1]}</b>{game.seal[2]}</span></span>
+    )}
+    <div class="band">
+      <p class="label series">Family game</p>
+      <h2 id="game-family">{game.name}</h2>
+      <p class="maker">{makers}</p>
+    </div>
+    <dl class="facts">
+      <div><dt>Players</dt><dd>{game.players}</dd></div>
+      <div><dt>Time</dt><dd>{game.time}</dd></div>
+      <div><dt>Ages</dt><dd>{game.ages}</dd></div>
+    </dl>
+    {game.note && <p class="note">{game.note}</p>}
+    {hasSolo && <p class="solo-jump"><a href="#solo">Looking for a solo game? <span aria-hidden="true">↓</span></a></p>}
+    <div class="actions">
+      <a class="btn" href="#learn"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3 1l10 6-10 6z" fill="currentColor"/></svg>How to play · {game.video.minutes}</a>
+      <a class="btn plain" href={info.href}>{info.text}<span class="vh">: {game.name}</span> <span aria-hidden="true">↗</span></a>
+    </div>
+    {game.buyOnline && (
+      <p class="shop">
+        <a href={game.buyOnline.url}>{game.buyOnline.kind === 'product' ? 'Buy online at GameNerdz' : 'Search GameNerdz'} <span aria-hidden="true">↗</span></a>{game.buyOnline.edition && ` · ${game.buyOnline.edition}`}
+      </p>
+    )}
+  </div>
+  <div class="plank" aria-hidden="true"></div>
+</article>

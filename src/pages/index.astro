@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import IssueView from '../components/IssueView.astro';
+import { getIssues, issuePath, ogPath, issueLine } from '../lib/issues';
+import { SITE } from '../lib/site';
+
+const issues = await getIssues();
+const latest = issues[0];
+if (!latest) throw new Error('No published issues in src/content/issues/');
+const d = latest.data;
+---
+<Base
+  title={`${SITE.name}: ${d.family.name}${d.solo ? ` and ${d.solo.name}` : ''}`}
+  description={`${issueLine(latest)}. ${d.theme}: ${d.dek}`}
+  canonical={issuePath(latest)}
+  ogImage={ogPath(latest)}
+  ogAlt={`${SITE.name}, Issue No. ${d.issue}: ${d.theme}. ${d.family.name}${d.solo ? ` and ${d.solo.name}` : ''}.`}
+  nav="week"
+  mastLine={[`Issue No. ${d.issue}`, d.label]}
+>
+  <IssueView issue={latest} shelf={issues.slice(0, 3)} />
+</Base>

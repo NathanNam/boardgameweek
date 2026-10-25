@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import Shelf from '../components/Shelf.astro';
+import { getIssues } from '../lib/issues';
+import { SITE } from '../lib/site';
+const issues = await getIssues();
+const n = issues.length;
+---
+<Base
+  title={`The shelf: every issue · ${SITE.name}`}
+  description={`Every issue of ${SITE.name}, newest first: one family game and one solo game each week.`}
+  canonical="/archive/"
+  nav="archive"
+  mastLine={['The shelf', `${n} ${n === 1 ? 'issue' : 'issues'} so far`]}
+>
+  <section class="page-h" aria-labelledby="arch">
+    <p class="label">Archive</p>
+    <h1 id="arch">The shelf</h1>
+    <p class="dek">Every issue, newest first. Each week is a stack of two boxes: the solo game on top, the family game below. Open a box to read that week's issue.</p>
+  </section>
+  <section class="sec" aria-label="All issues">
+    <Shelf issues={issues} />
+  </section>
+</Base>

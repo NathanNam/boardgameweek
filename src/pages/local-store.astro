@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import { STORE, ONLINE, NOT_SPONSORED, SITE } from '../lib/site';
+---
+<Base
+  title={`Our neighborhood game store: Dogpatch Games · ${SITE.name}`}
+  description="Dogpatch Games is the game store in our neighborhood, San Francisco's Dogpatch, where we play, learn and buy games. Address, hours and what's there for families."
+  canonical="/local-store/"
+  nav="store"
+  mastLine={['Our neighborhood game store', 'Dogpatch Games, San Francisco']}
+>
+  <section class="page-h" aria-labelledby="ls">
+    <p class="label">Where we play</p>
+    <h1 id="ls">Our neighborhood game store</h1>
+    <p class="dek">We play and buy games at Dogpatch Games, the game store in our neighborhood, San Francisco's Dogpatch. We're just customers who like it there; here's what we've found useful as a family.</p>
+  </section>
+
+  <div class="lp-grid">
+    <section class="sec" aria-labelledby="fam">
+      <div class="sec-h"><span class="num" aria-hidden="true">★</span><h2 id="fam">For families</h2></div>
+      <ul class="offer">
+        <li><h3>Kids Club</h3><p>After-school board game clubs, usually 8 weeks long, focused on sportsmanship, teamwork, fair play and fun. All experience levels are welcome. <a href={STORE.kidsClub}>Kids Club <span aria-hidden="true">↗</span></a></p></li>
+        <li><h3>Family memberships</h3><p>Family memberships include unlimited regular table play, plus discounts on games, snacks and Kids Club. <a href={STORE.memberships}>Memberships <span aria-hidden="true">↗</span></a></p></li>
+        <li><h3>Learn + Play</h3><p>On Thursdays and Saturdays you can get matched with other players to learn a game, with a new game every week. Check their calendar for times. <a href={STORE.learnPlay}>Learn + Play events <span aria-hidden="true">↗</span></a></p></li>
+        <li><h3>Games library</h3><p>A library of over 1,400 games to play at their tables, with new games added all the time. Table play is $5 an hour per person for non-members; memberships include free table time. <a href={STORE.library}>Games library <span aria-hidden="true">↗</span></a> · <a href={STORE.tableRates}>Table rates <span aria-hidden="true">↗</span></a></p></li>
+        <li><h3>Games to buy</h3><p>They sell games in the shop. Their online store page is being rebuilt; for now it says to call to order for in-store pickup.</p></li>
+      </ul>
+    </section>
+
+    <section class="sec" aria-labelledby="visit">
+      <div class="sec-h"><span class="num green" aria-hidden="true">→</span><h2 id="visit">Getting there</h2></div>
+      <div class="card local">
+        <div class="awning" aria-hidden="true"></div>
+        <div class="in">
+          <div class="sign">
+            <p class="label">Dogpatch Games</p>
+            <address>{STORE.address}<br>{STORE.city}</address>
+            <dl class="hours">{STORE.hours.map((h) => (<><dt>{h.days}</dt><dd>{h.time}</dd></>))}</dl>
+          </div>
+          <ul class="lp-btns">
+            <li><a class="btn green" href={STORE.directions}>Directions <span aria-hidden="true">↗</span></a></li>
+            <li><a class="btn plain" href={STORE.site}>dogpatch.games <span aria-hidden="true">↗</span></a></li>
+            <li><a class="btn plain" href={STORE.calendar}>Calendar <span aria-hidden="true">↗</span></a></li>
+          </ul>
+          <p>Details here are from <a href={STORE.site}>their website</a>; check it for the latest hours, prices and events.</p>
+          <p>Shopping online instead? We use <a href={ONLINE.url}>{ONLINE.name}</a>.</p>
+          <p class="ns">{NOT_SPONSORED}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Base>
