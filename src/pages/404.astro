@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+---
+<Base title={`Page not found · ${SITE.name}`} description="That page isn't on the shelf." canonical="/404/" nav="none">
+  <meta slot="head" name="robots" content="noindex">
+  <section class="page-h" aria-labelledby="nf">
+    <p class="label">404</p>
+    <h1 id="nf">That box isn't on the shelf.</h1>
+    <p class="dek">Try <a href="/">this week's games</a> or <a href="/archive/">the whole shelf</a>.</p>
+  </section>
+</Base>

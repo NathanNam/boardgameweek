@@ -1,0 +1,49 @@
+---
+import { issuePath, type Issue } from '../lib/issues';
+import { shelfColor } from '../lib/boxart.mjs';
+interface Props { issues: Issue[]; showNext?: boolean }
+const { issues, showNext = true } = Astro.props;
+// On wide screens the shelf has 3 columns; empty slots keep the plank running the full width.
+const used = issues.length + (showNext ? 1 : 0);
+const fillers = (3 - (used % 3)) % 3;
+const weekOf = (i: Issue) => {
+  const t = i.data.label.replace(/^for the\s+/i, '');
+  return t.charAt(0).toUpperCase() + t.slice(1);
+};
+---
+<div class="shelf">
+  {issues.map((i) => {
+    const d = i.data;
+    const href = issuePath(i);
+    return (
+      <div class="stack">
+        <p class="date"><a href={href}>Issue No. {d.issue}</a> · {weekOf(i)}</p>
+        {d.solo && (
+          <a class="spine small" href={href} style={`background:${shelfColor(d.solo.color, d.issue, 'solo')}`}>
+            <span class="k">Solo</span><b>{d.solo.name}</b><span class="vh">: issue {d.issue}, {d.theme}</span>
+          </a>
+        )}
+        <a class="spine big" href={href} style={`background:${shelfColor(d.family.color, d.issue, 'family')}`}>
+          <span class="k">Family</span><b>{d.family.name}</b><span class="vh">: issue {d.issue}, {d.theme}</span>
+        </a>
+        <div class="wood" aria-hidden="true"></div>
+        <p class="theme">{d.theme}</p>
+        <p class="bgg">BoardGameGeek: {[d.family, d.solo].filter((g) => g && (g.bgg || g.publisherUrl)).map((g, n) => (
+          <>{n > 0 && ' · '}<a href={g!.bgg ?? g!.publisherUrl}>{g!.name}<span aria-hidden="true"> ↗</span></a></>
+        ))}</p>
+      </div>
+    );
+  })}
+  {showNext && (
+    <div class="stack next" aria-label="Coming next">
+      <p class="date">Next Friday</p>
+      <span class="spine small"><span class="k">Solo</span><b>Next week's solo game</b></span>
+      <span class="spine big"><span class="k">Family</span><b>Next week's family game</b></span>
+      <div class="wood" aria-hidden="true"></div>
+      <p class="theme">More every week: a new issue every Friday.</p>
+    </div>
+  )}
+  {Array.from({ length: fillers }, () => (
+    <div class="stack fill" aria-hidden="true"><div class="wood"></div></div>
+  ))}
+</div>

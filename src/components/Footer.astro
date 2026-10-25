@@ -1,0 +1,29 @@
+---
+import { STORE, ONLINE, NOT_SPONSORED, SITE } from '../lib/site';
+const year = 2026;
+---
+<footer>
+  <div class="wrap">
+    <div class="f-store">
+      <svg viewBox="0 0 72 64" width="72" height="64" aria-hidden="true" focusable="false">
+        <rect x="6" y="22" width="60" height="38" fill="#fffaf0" stroke="#2a1f16" stroke-width="3"/>
+        <rect x="28" y="36" width="16" height="24" fill="#e3a92b" stroke="#2a1f16" stroke-width="3"/>
+        <rect x="12" y="34" width="11" height="11" fill="#a9c6d6" stroke="#2a1f16" stroke-width="2.5"/>
+        <rect x="49" y="34" width="11" height="11" fill="#a9c6d6" stroke="#2a1f16" stroke-width="2.5"/>
+        <path d="M2 6h68v12H2z" fill="#f6ecd4" stroke="#2a1f16" stroke-width="3"/>
+        <path d="M2 6h11v12H2zM24 6h12v12H24zM47 6h12v12H47z" fill="#b4481f"/>
+        <path d="M2 18q5.5 7 11 0q5.5 7 11 0q6 7 12 0q5.5 7 11 0q6 7 12 0q5.5 7 11 0" fill="#f6ecd4" stroke="#2a1f16" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M2 6h68v12H2z" fill="none" stroke="#2a1f16" stroke-width="3"/>
+      </svg>
+      <div>
+        <p class="big">Our neighborhood game store: <a href={STORE.site}>Dogpatch Games</a> · {STORE.address}, San Francisco</p>
+        <p class="small">Online: <a href={ONLINE.url}>GameNerdz</a> · <a href="/local-store/">More about the store we play at</a></p>
+      </div>
+    </div>
+    <div class="f-fine">
+      <p><em>{NOT_SPONSORED}</em></p>
+      <p>Videos belong to their creators; game names belong to their publishers. All box drawings are original; no publisher artwork is used.</p>
+      <p>Issue text © {year} {SITE.author}. Site code under the <a href="https://github.com/NathanNam/boardgameweek">MIT License</a>.</p>
+    </div>
+  </div>
+</footer>

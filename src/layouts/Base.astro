@@ -1,0 +1,98 @@
+---
+import '@fontsource/shrikhand/latin-400.css';
+import '@fontsource/oswald/latin-500.css';
+import '@fontsource/oswald/latin-600.css';
+import '@fontsource/karla/latin-400.css';
+import '@fontsource/karla/latin-400-italic.css';
+import '@fontsource/karla/latin-600.css';
+import '@fontsource/karla/latin-800.css';
+import '../styles/global.css';
+import Analytics from '@vercel/analytics/astro';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/site';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path of the canonical page, e.g. /issues/<slug>/ */
+  canonical: string;
+  /** Path of the 1200×630 share image. */
+  ogImage?: string;
+  ogAlt?: string;
+  ogType?: 'website' | 'article';
+  nav: 'week' | 'archive' | 'store' | 'none';
+  /** Line under the masthead title, e.g. ["Issue No. 1", "For the week of Oct 25, 2026"]. */
+  mastLine?: string[];
+}
+
+const { title, description, canonical, ogImage = '/og/site.png', ogAlt = `${SITE.name}: ${SITE.tagline}`, ogType = 'website', nav, mastLine = [] } = Astro.props;
+const canonicalUrl = new URL(canonical, SITE.url).href;
+const imageUrl = new URL(ogImage, SITE.url).href;
+const links = [
+  { key: 'week', href: '/', text: 'This week' },
+  { key: 'archive', href: '/archive/', text: 'Archive' },
+  { key: 'store', href: '/local-store/', text: 'Local store' },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonicalUrl}>
+  <meta name="theme-color" content="#1e4a34">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <meta property="og:site_name" content={SITE.name}>
+  <meta property="og:type" content={ogType}>
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:url" content={canonicalUrl}>
+  <meta property="og:image" content={imageUrl}>
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content={ogAlt}>
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={imageUrl}>
+  <meta name="twitter:image:alt" content={ogAlt}>
+  <slot name="head" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="mast">
+    <svg class="stripes" viewBox="0 0 180 120" aria-hidden="true" focusable="false" preserveAspectRatio="xMaxYMin meet">
+      <path d="M180 18 C120 18 90 60 90 120" fill="none" stroke="#e3a92b" stroke-width="14"/>
+      <path d="M180 36 C132 36 108 70 108 120" fill="none" stroke="#dd7a2b" stroke-width="14"/>
+      <path d="M180 54 C144 54 126 80 126 120" fill="none" stroke="#b4481f" stroke-width="14"/>
+    </svg>
+    <div class="wrap">
+      <div class="mast-row">
+        <span class="label every">Every week: {SITE.tagline.toLowerCase()}</span>
+        <nav aria-label="Site">
+          <ul>
+            {links.map((l) => (
+              <li><a href={l.href} aria-current={nav === l.key ? 'page' : undefined}>{l.text}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+      <a class="title" href="/">{SITE.name}</a>
+      {mastLine.length > 0 && (
+        <p class="issue label">{mastLine.map((s) => <span>{s}</span>)}</p>
+      )}
+    </div>
+  </header>
+  <main id="main" class="wrap" tabindex="-1">
+    <slot />
+  </main>
+  <Footer />
+  <Analytics />
+</body>
+</html>
