@@ -92,13 +92,6 @@ const { Content } = await render(issue);
       <h3>Find it at your local game store.</h3>
       <p>Ask them; many stores can order a game in for you.</p>
     </div>
-    {d.dontHaveIt && (
-      <aside class="card dh" aria-labelledby="dh">
-        <p class="label">Don't have it?</p>
-        <h3 id="dh">{d.dontHaveIt.url ? <a href={d.dontHaveIt.url} style="color:inherit">{d.dontHaveIt.name}<span aria-hidden="true"> ↗</span></a> : d.dontHaveIt.name}</h3>
-        <p>{d.dontHaveIt.text}</p>
-      </aside>
-    )}
   </div>
   <p class="ns copy-ns">{NOT_SPONSORED}</p>
 </section>

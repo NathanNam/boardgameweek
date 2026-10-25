@@ -90,11 +90,6 @@ tips:
     icon: timer
     text: "Play a shorter series and stop while everyone's still having fun."
 
-dontHaveIt:
-  name: "The Official Baseball Board Game"
-  maker: "Masterpieces"
-  text: "The Official Baseball Board Game (Masterpieces) is simpler and works for 2 to 8 players aged 7 and up, with dice for pitches and hits."
-  url: https://www.masterpiecesinc.com/products/baseball-board-game
 ---
 
 The World Series is on. The Milwaukee Brewers won the first two games at home,

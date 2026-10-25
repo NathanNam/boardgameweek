@@ -44,10 +44,9 @@ Nathan chooses **one family game** and (optionally) **one solo game**.
    linked news story in `sources`.
 6. **Talk about it:** three questions for younger players (about 10–12) and three
    for teens. **Make it work for everyone:** three practical tips.
-7. **Don't have it?** a simpler or cheaper alternative.
-8. Box art: pick a short `word`, a `motif` and a shelf `color`. Drawings are
+7. Box art: pick a short `word`, a `motif` and a shelf `color`. Drawings are
    generated; never use publisher artwork.
-9. Set `draft: false`.
+8. Set `draft: false`.
 
 ## Thursday: check and open a PR
 

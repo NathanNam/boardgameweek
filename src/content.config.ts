@@ -92,7 +92,6 @@ const issues = defineCollection({
       text: z.string(),
       icon: z.enum(['announcer', 'pair', 'timer', 'eye', 'hand', 'star', 'rules']),
     })).min(1),
-    dontHaveIt: z.object({ name: z.string(), maker: z.string(), text: z.string(), url: z.url().optional() }).optional(),
     /** Optional weekly line in the Dogpatch Games strip. Never claim the store stocks a game. */
     localNote: z.string().optional(),
   }),

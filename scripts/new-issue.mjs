@@ -127,12 +127,6 @@ tips:
     icon: timer
     text: "TODO"
 
-dontHaveIt:
-  name: "TODO: a simpler or cheaper alternative"
-  maker: "TODO"
-  text: "TODO: one sentence."
-  # url: https://example.com/
-
 # localNote: "Optional line in the Dogpatch Games box under Find a copy. Never claim the store stocks a game."
 ---
 

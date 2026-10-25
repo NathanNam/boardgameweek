@@ -149,7 +149,6 @@ img,svg{max-width:100%}
 .card p:last-child{margin-bottom:0}
 .card ul{margin:0;padding:0;list-style:none;display:grid;gap:10px}
 .card li b{display:block;font-family:var(--cond);font-weight:600;letter-spacing:.04em}
-.card.dh{background:var(--mustard-lt)}
 .card.local{background:var(--paper);padding:0;overflow:hidden}
 .card.local .in{padding:24px 16px 16px}
 .card.local .label{color:var(--forest)}
@@ -225,7 +224,7 @@ footer p{margin:0}
   .mast nav ul{margin:0}
 }
 @media (min-width:700px){
-  .copy{grid-template-columns:1fr 1fr}
+  .copy{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
   .shelf{grid-template-columns:repeat(2,1fr)}
 }
 @media (min-width:900px){
