@@ -170,6 +170,7 @@ img,svg{max-width:100%}
 .solo-facts{display:flex;flex-wrap:wrap;gap:6px 12px;font-family:var(--cond);font-weight:600;font-size:18px;letter-spacing:.03em}
 .solo-facts span{display:inline-flex;align-items:center;gap:12px}
 .solo-facts span+span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rust)}
+.solo-body .solo-note{font-size:14px;color:var(--muted);margin-top:-6px}
 .solo-body .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
 
 /* shelf */
