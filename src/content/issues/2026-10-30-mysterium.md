@@ -16,12 +16,12 @@ family:
   note: "Sold now as the 2025 Refresh: new box art, cards and tray, the same game."
   bgg: https://boardgamegeek.com/boardgame/181304/mysterium
   video:
-    id: mhCv0CZW2UM
-    title: "How to play Mysterium in 6 minutes"
-    channel: "Teach The Table"
-    length: "5:27"
-    minutes: "5 min"
-    note: "A 5-minute video covers the rules: How to play Mysterium in 6 minutes (Teach The Table). Watch it together before the first game, then decide who plays the ghost."
+    id: Bw2Xz9wp4KI
+    title: "Mysterium - How to Play"
+    channel: "Shut Up & Sit Down"
+    length: "10:11"
+    minutes: "10 min"
+    note: "A 10-minute video covers the rules: Mysterium - How to Play (Shut Up & Sit Down). Watch it together before the first game, then decide who plays the ghost."
   buyOnline:
     url: https://www.gamenerdz.com/mysterium-2025-refresh
     kind: product
