@@ -21,9 +21,11 @@ const info = game.bgg
       <h2 id="solo-h"><span class="pre">Looking for a solo game for this week's event?</span> Try <em>{game.name}</em>.</h2>
       {game.intro && <p>{game.intro}</p>}
       <p class="solo-facts"><span>{game.players} players</span><span>{game.time}</span><span>{game.ages}</span></p>
+      {game.note && <p class="solo-note">{game.note}</p>}
       <div class="actions">
         {game.getIt && <a class="btn green" href={game.getIt.url}>Get it · {game.getIt.label}<span class="vh"> print-and-play from {game.publisher}</span> <span aria-hidden="true">↗</span></a>}
         <a class="btn plain" href={`https://www.youtube.com/watch?v=${game.video.id}`}><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M3 1l10 6-10 6z" fill="currentColor"/></svg>How to play · {game.video.minutes}<span class="vh">: {game.video.title}, {game.video.channel}, on YouTube</span> <span aria-hidden="true">↗</span></a>
+        {game.buyOnline && <a class="btn plain" href={game.buyOnline.url}>{game.buyOnline.kind === 'product' ? 'GameNerdz' : 'Search GameNerdz'}<span class="vh">: buy {game.name} online</span> <span aria-hidden="true">↗</span></a>}
         <a class="btn plain" href={info.href}>{info.text}<span class="vh">: {game.name}</span> <span aria-hidden="true">↗</span></a>
       </div>
     </div>
