@@ -136,6 +136,7 @@ img,svg{max-width:100%}
 .hours{display:grid;grid-template-columns:auto 1fr;gap:2px 14px;margin:0;font-family:var(--cond);font-size:17px;letter-spacing:.03em}
 .hours dt{font-weight:500;color:var(--mustard-lt)}
 .hours dd{margin:0;font-weight:600}
+.card .lp-btns{margin:16px 0}
 .sign-links{margin:12px 0 0;font-size:15px}
 .sign a{color:var(--mustard-lt)}
 .sign a:hover{color:var(--cream)}
