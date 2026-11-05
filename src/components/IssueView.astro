@@ -5,7 +5,7 @@ import VideoTV from './VideoTV.astro';
 import SoloCard from './SoloCard.astro';
 import TipIcon from './TipIcon.astro';
 import Shelf from './Shelf.astro';
-import { STORE, ONLINE, NOT_SPONSORED } from '../lib/site';
+import { STORE, ONLINE, NOT_SPONSORED, buyLabel } from '../lib/site';
 import type { Issue } from '../lib/issues';
 
 interface Props { issue: Issue; shelf: Issue[] }
@@ -81,9 +81,10 @@ const { Content } = await render(issue);
     {d.family.buyOnline && (
       <div class="card">
         <p class="label">Shopping online?</p>
-        <h3>We use {ONLINE.name}</h3>
+        <h3>{d.family.buyOnline.store === 'gamenerdz' ? `We use ${ONLINE.name}` : `Not at ${ONLINE.name} right now`}</h3>
+        {d.family.buyOnline.store === 'geekmarket' && <p>BoardGameGeek's marketplace, where people sell new and used copies.</p>}
         <p>
-          <a href={d.family.buyOnline.url}>{d.family.buyOnline.kind === 'product' ? 'Buy online at GameNerdz' : 'Search GameNerdz'}<span class="vh"> for {d.family.name}</span><span aria-hidden="true"> ↗</span></a>{d.family.buyOnline.edition && ` (${d.family.name}, ${d.family.buyOnline.edition})`}
+          <a href={d.family.buyOnline.url}>{buyLabel(d.family.buyOnline, d.family.publisher).long}<span class="vh"> for {d.family.name}</span><span aria-hidden="true"> ↗</span></a>{d.family.buyOnline.edition && ` (${d.family.name}, ${d.family.buyOnline.edition})`}
         </p>
       </div>
     )}

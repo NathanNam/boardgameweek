@@ -64,9 +64,10 @@ family:
     length: "0:00"
     minutes: "0 min"
     note: "TODO: A N-minute video covers the rules: <title> (<channel>). Watch it together before the first game."
-  # buyOnline:              # GameNerdz product page if listed, else a search link. Never claim stock.
+  # buyOnline:              # GameNerdz if it has the game in stock; else the publisher's shop; else GeekMarket.
+  #   store: gamenerdz      # or: publisher, geekmarket (https://boardgamegeek.com/boardgame/<id>/<slug>/marketplace/geekmarket)
   #   url: https://www.gamenerdz.com/search.php?search_query=TODO
-  #   kind: search          # or: product
+  #   kind: search          # or: product (GameNerdz only). Never claim stock.
   #   edition: "TODO"
   seal: ["Issue", "${issue}", "Family"]
   # color: peach            # shelf colour: mustard, mustardLt, orange, cream, paper, sky, sage, peach

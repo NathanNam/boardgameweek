@@ -28,4 +28,15 @@ export const STORE = {
 
 export const ONLINE = { name: 'GameNerdz', url: 'https://www.gamenerdz.com/' };
 
+type Buy = { store: 'gamenerdz' | 'publisher' | 'geekmarket'; kind: 'product' | 'search' };
+
+/** Link text for a game's buyOnline: `long` for text links, `short` for buttons. */
+export function buyLabel(buy: Buy, publisher: string) {
+  if (buy.store === 'publisher') return { long: `Buy from ${publisher}`, short: publisher };
+  if (buy.store === 'geekmarket') return { long: 'Find a copy on GeekMarket', short: 'GeekMarket' };
+  return buy.kind === 'product'
+    ? { long: 'Buy online at GameNerdz', short: 'GameNerdz' }
+    : { long: 'Search GameNerdz', short: 'Search GameNerdz' };
+}
+
 export const NOT_SPONSORED = 'Not sponsored — these are simply the stores we use.';
