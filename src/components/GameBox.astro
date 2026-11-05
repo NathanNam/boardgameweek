@@ -1,6 +1,7 @@
 ---
 import type { Issue } from '../lib/issues';
 import { boxArtSvg } from '../lib/boxart.mjs';
+import { buyLabel } from '../lib/site';
 
 type Game = Issue['data']['family'];
 interface Props { game: Game; hasSolo: boolean }
@@ -35,7 +36,7 @@ const info = game.bgg
     </div>
     {game.buyOnline && (
       <p class="shop">
-        <a href={game.buyOnline.url}>{game.buyOnline.kind === 'product' ? 'Buy online at GameNerdz' : 'Search GameNerdz'} <span aria-hidden="true">↗</span></a>{game.buyOnline.edition && ` · ${game.buyOnline.edition}`}
+        <a href={game.buyOnline.url}>{buyLabel(game.buyOnline, game.publisher).long} <span aria-hidden="true">↗</span></a>{game.buyOnline.edition && ` · ${game.buyOnline.edition}`}
       </p>
     )}
   </div>

@@ -58,8 +58,16 @@ const game = z.object({
   video,
   /** Solo card: primary way to get it, e.g. { label: "$5", url: <print-and-play page> }. */
   getIt: link.optional(),
-  /** GameNerdz product page (kind: product) or search (kind: search). Never claim stock. */
-  buyOnline: z.object({ url: z.url(), kind: z.enum(['product', 'search']), edition: z.string().optional() }).optional(),
+  /**
+   * Where to buy online. GameNerdz first (kind: product page, or search); when GameNerdz doesn't
+   * have it, the publisher's own shop, else BoardGameGeek's GeekMarket. Never claim stock.
+   */
+  buyOnline: z.object({
+    store: z.enum(['gamenerdz', 'publisher', 'geekmarket']).default('gamenerdz'),
+    url: z.url(),
+    kind: z.enum(['product', 'search']).default('product'),
+    edition: z.string().optional(),
+  }).optional(),
   /** The round sticker on the box: three short lines. */
   seal: z.tuple([z.string(), z.string(), z.string()]).optional(),
   /** Box colour on the archive shelf. Optional: a colour is picked from the issue number. */

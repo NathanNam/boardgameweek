@@ -23,9 +23,8 @@ family:
     minutes: "37 min"
     note: "A 37-minute video covers the rules: 1960 The Making Of The President - How To Play (Watch It Played). It's long, so watch the first half together, start playing, and look up the rest as it comes up."
   buyOnline:
-    url: https://www.gamenerdz.com/1960-the-making-of-the-president-2nd-printing
-    kind: product
-    edition: "2nd Printing"
+    store: geekmarket
+    url: https://boardgamegeek.com/boardgame/27708/1960-the-making-of-the-president/marketplace/geekmarket
   seal: ["Issue", "3", "For two"]
   color: sky
   art:
@@ -50,8 +49,8 @@ solo:
     length: "23:11"
     minutes: "23 min"
   buyOnline:
-    url: https://www.gamenerdz.com/search.php?search_query=votes+for+women
-    kind: search
+    store: geekmarket
+    url: https://boardgamegeek.com/boardgame/311900/votes-for-women/marketplace/geekmarket
   seal: ["Solo", "vs", "Oppobot"]
   color: mustardLt
   art:
