@@ -48,9 +48,10 @@ function card({ kicker, title, line, family, solo }) {
   const box = (art, cls, name, tag) => `
     <div class="box ${cls}">
       <div class="art">${boxArtSvg(art)}</div>
-      ${name ? `<div class="band"><span class="tag">${esc(tag)}</span><b>${esc(name)}</b></div>` : ''}
+      ${name ? `<div class="band"><span class="tag">${esc(tag)}</span><b${name.length > 20 ? ' class="long"' : ''}>${esc(name)}</b></div>` : ''}
     </div>`;
   const long = title.length > 22;
+  const veryLong = title.length > 34; // e.g. "The 100th Macy's Thanksgiving Day Parade": keep it to three lines
   return `<!doctype html><html><head><meta charset="utf-8"><style>${FONTS}
   *{box-sizing:border-box;margin:0}
   body{width:1200px;height:630px;overflow:hidden;background:${PALETTE.cream};color:${PALETTE.ink};font-family:Karla,sans-serif;position:relative;
@@ -62,7 +63,7 @@ function card({ kicker, title, line, family, solo }) {
   .stripes{position:absolute;right:0;top:0;width:250px;height:150px}
   .left{position:absolute;left:64px;top:206px;width:540px}
   .kicker{font-family:Oswald;font-weight:600;font-size:24px;letter-spacing:.14em;text-transform:uppercase;color:${PALETTE.rust}}
-  .title{font-family:Shrikhand;font-weight:400;font-size:${long ? 62 : 76}px;line-height:1.05;color:${PALETTE.forest};margin-top:10px}
+  .title{font-family:Shrikhand;font-weight:400;font-size:${veryLong ? 54 : long ? 62 : 76}px;line-height:1.05;color:${PALETTE.forest};margin-top:10px}
   .line{margin-top:22px;font-size:27px;line-height:1.35;font-weight:600;color:${PALETTE.ink}}
   .line span{display:block}
   .line i{font-style:normal;font-family:Oswald;font-weight:600;font-size:17px;letter-spacing:.12em;text-transform:uppercase;background:${PALETTE.ink};color:${PALETTE.cream};padding:3px 9px;border-radius:5px;margin-right:12px;position:relative;top:-4px}
@@ -75,6 +76,7 @@ function card({ kicker, title, line, family, solo }) {
   .band{padding:9px 16px 10px;border-top:4px solid ${PALETTE.ink};display:flex;gap:12px;align-items:center}
   .band b{font-family:Shrikhand;font-weight:400;font-size:25px;line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .solo .band b{font-size:20px}
+  .solo .band b.long{font-size:15px}
   .tag{font-family:Oswald;font-weight:600;font-size:14px;letter-spacing:.12em;text-transform:uppercase;background:${PALETTE.ink};color:${PALETTE.cream};padding:3px 7px;border-radius:4px}
   .plank{position:absolute;left:620px;right:28px;top:596px;height:20px;border-radius:4px;background:linear-gradient(180deg,#a8723f,#8a5a33 40%,#5e3b1f)}
   .url{position:absolute;left:66px;bottom:30px;font-family:Oswald;font-weight:500;font-size:22px;letter-spacing:.08em;color:${PALETTE.muted}}
